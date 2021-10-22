@@ -1,43 +1,76 @@
-class Node {
-    constructor(data){
-        this.data = data;
+
+
+
+class Node{
+    constructor(value){
+        this.value = value;
         this.left = null;
         this.right = null;
     }
-
-    insertNode(node, newNode){
-        if(newNode.data < node.data){
-            if(node.left === null){
-                node.left = newNode;
-            }else{
-                this.insertNode(node.left, newNode);
-            }
-        }else{
-            if(node.right === null){
-                node.right = newNode;
-            }else{
-                this.insertNode(node.right, newNode);
-            }
-        }
-    }
-
 }
-
-class binarySearchTree {
+class BinaryTree{
     constructor(){
         this.root = null;
     }
 
-    insert(data){
-        let newNode = new Node(data);
-    
-        if(this.root === null){
+    insert(value){
+        const newNode = new Node(value);
+        if(!this.root){
             this.root = newNode;
-        }else{
-            this.insertNode(this.root, newNode);
+            return;
         }
+
+        let currentNode = this.root;
+
+        while(currentNode){
+            if(newNode.value < currentNode.value){
+                if(!currentNode.left){
+                    currentNode.left = newNode;
+                    return;
+                }
+
+                currentNode = currentNode.left;
+            }else{
+                if(!currentNode.right){
+                    currentNode.right = newNode;
+                    return;
+                }
+
+                currentNode = currentNode.right;
+            }
+        }
+    }
+
+    preorder(node, callbackF){
+
+    }
+
+    traverseDFS(callbackF, method){
+        if(method = 'preorder'){
+            return this.preorder(this.root, callbackF);
+        }
+
+        if(method = 'inorder'){
+            return this.inorder(this.root, callbackF);
+        }
+    }
+
+    traverseBFS(){
+
     }
 }
 
+const myFirstTree = new BinaryTree();
 
+myFirstTree.insert(8);
+myFirstTree.insert(7);
+myFirstTree.insert(9);
+myFirstTree.insert(20);
+myFirstTree.insert(5);
+myFirstTree.insert(11);
+myFirstTree.insert(2);
+myFirstTree.insert(4);
+myFirstTree.insert(17);
+myFirstTree.insert(13);
 
+console.log(myFirstTree);

@@ -14,19 +14,6 @@ function memoize(func, ...obj) {
     }
 }
 
-const numberCounterMemoizer = memoize(function(nums, index, obj){
-    index = index || 0;
-    obj = obj || {};
-    let mass_nums = nums.toString().split('');
-    if (mass_nums.length > index) {
-        obj[mass_nums[index]] = ++obj[mass_nums[index]] || 1;
-        return numberCounterMemoizer(nums, ++index, obj);
-    }
-    return obj;
-}, 'numberCounterRecusrion');
-
-console.log(numberCounterMemoizer);
-
 let firstString = "mouse";
 let secondString = "eousm";
 
@@ -67,7 +54,7 @@ const memoizeAn = memoize(function reqAnagramm(firstString, secondString, index,
     return arr.length == newStr1.length;
 }, 'memoize anagramm');
 
-// let someNumber = 3243166532;
+let someNumber = 3243166532;
 function countNum(someNumber){
     let stringNum = String(someNumber);
     let counter = 0;
