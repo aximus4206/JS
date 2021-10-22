@@ -1,47 +1,14 @@
 
-// function memoize(func) {
-//     let memo = {};
-//     console.log(memo);
-//     let slice = Array.prototype.slice;
-  
-//     return function() {
-//       let args = slice.call(arguments);
-  
-//       if (args in memo){
-//         console.log('Fetching from cache', args);
-//         return memo[args];
-//       }else{
-//         console.log('Calculating result', args);
-//         return (memo[args] = func.apply(this, args));
-//       }
-//     }
-// }
-
-// function memoize(func, ...obj) {
-//     let cache = {};
-//     cache[obj] = cache[obj] || {};
-//     console.log(cache);
-//     return function (...par) {
-//         if (cache[obj][par] != undefined) {
-//             return cache[obj][par];
-//         } else {
-//             let result = func(...par);
-//             cache[obj][par] = result;
-//             return result;
-//         }
-//     }
-// }
-
-function memoize(fun, ...obj) {
+function memoize(func, ...obj) {
     let cache = {};
     cache[obj] = cache[obj] || {};
     console.log(cache);
-    return function (...arg) {
-        if (cache[obj][arg] != undefined) {
-            return cache[obj][arg];
+    return function (...par) {
+        if (cache[obj][par] != undefined) {
+            return cache[obj][par];
         } else {
-            let result = fun(...arg);
-            cache[obj][arg] = result;
+            let result = func(...par);
+            cache[obj][par] = result;
             return result;
         }
     }
@@ -58,9 +25,10 @@ const numberCounterMemoizer = memoize(function(nums, index, obj){
     return obj;
 }, 'numberCounterRecusrion');
 
+console.log(numberCounterMemoizer);
 
-// let firstString = "mouse";
-// let secondString = "eousm";
+let firstString = "mouse";
+let secondString = "eousm";
 
 function annagram(firstString, secondString){
     let counter = 0;
@@ -185,31 +153,31 @@ function uniqueWords(newStr) {
     return counter;
 }
 
-function fib(n) {
-    let arrN = [];
+function fib(number) {
+    let arrNew = [];
     let arr = [0, 1];
-    for (let i = 0; i < n; i++) {
+    for (let i = 0; i < number; i++) {
         arr[0] += arr[1];
-        arrN.push(arr[0]);
+        arrNew.push(arr[0]);
         arr[1] += arr[0];
-        arrN.push(arr[1]);
+        arrNew.push(arr[1]);
     }
-    return arrN;
+    return arrNew;
 }
 
-const memoizeFib = memoize(function reqoursionFib(n, a, b, arr, res) {
-    a = a || 0;
-    b = b || 1;
-    arr = [a, b] || [0, 1];
-    res = res || [];
-    if(n > 0){
-        a = a + b;
-        res.push(a);
-        b = b + a;
-        res.push(b);
-        return reqoursionFib(--n, a, b, arr, res);
+const memoizeFib = memoize(function reqoursionFib(number, firstNum, secondNum, arr, result) {
+    firstNum = firstNum || 0;
+    secondNum = secondNum || 1;
+    arr = [firstNum, secondNum] || [0, 1];
+    result = result || [];
+    if(number > 0){
+        firstNum = firstNum + secondNum;
+        res.push(firstNum);
+        secondNum = secondNum + firstNum;
+        res.push(secondNum);
+        return reqoursionFib(--number, firstNum, secondNum, arr, res);
     }
-    return res;
+    return result;
 }, 'n numbers fibanachi');
 
 // let str = 'this string has no repeats no repeats and is unique string';
@@ -274,34 +242,6 @@ const memoizeFactorial = memoize(function reqoursionFactorial(num){
     return 1;
 }, 'memoized factorial');
 
-function R(){}
-
-R.prototype.showWidth = function(){
-    console.log(this.width);
-};
-
-R.prototype.showHeight = function(){
-    console.log(this.height);
-}
-
-function Rectangle(width, height){
-    this.width = width;
-    this.height = height;
-}
-
-Rectangle.prototype = R.prototype;
-Rectangle.prototype.constructor = Rectangle;
-
-Rectangle.prototype.square = function(){
-    return this.width * this.height;
-};
-
-Rectangle.prototype.perimeter = function(){
-    return (this.width + this.height) * 2;
-};
-
-let rect = new Rectangle(2, 4);
-
 // let width = 2;
 // let height = 4;
 function perimeterRect(width, height){
@@ -313,27 +253,6 @@ function squareRect(width, height){
     let result = width * height;
     return result;
 }
-
-function T(){}
-
-function Triangle(firstSide, secSide, thirdSide){
-    this.firstSide = firstSide;
-    this.secSide = secSide;
-    this.thirdSide = thirdSide;
-}
-
-Triangle.prototype = T.prototype;
-Triangle.prototype.constructor = Triangle;
-
-Triangle.prototype.square = function(){
-    return ((this.firstSide * this.secSide)/2);
-};
-
-Triangle.prototype.perimeter = function(){
-    return (this.firstSide + this.secSide + this.thirdSide);
-};
-
-let trian = new Triangle(3, 4, 5);
 
 // let first = 3;
 // let second = 4;
@@ -348,26 +267,6 @@ function triangleSquare(first, second){
     let result = (second * first)/2;
     return result;
 }
-
-function C(){}
-
-function Circle(radius){
-    this.radius = radius;
-    this.p = Math.PI;
-}
-
-Circle.prototype = C.prototype;
-Circle.prototype.constructor = Circle;
-
-Circle.prototype.square = function(){
-    return (this.p * (this.radius * this.radius));
-};
-
-Circle.prototype.perimeter = function(){
-    return (2 * this.p * this.radius);
-};
-
-let cir = new Circle(4);
 
 // let rad = 5;
 function perimetrCircle(rad){
