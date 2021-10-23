@@ -29,13 +29,13 @@
 //     return this.userFullName();
 // }
 
-Object.defineProperty(Array.prototype, 'myOwnBind', {
+Object.defineProperty(Object.prototype, 'myOwnBind', {
     value: function (objContext, ...restArgs) {
         let object = {
           ...objContext,
 
         };
-       let uniqueProperty = Date.now().toString();
+       let uniqueProperty = Symbol();
        object[uniqueProperty] = this;
        return function (...args) {
           let result = object[uniqueProperty](...restArgs, ...args);
@@ -46,9 +46,9 @@ Object.defineProperty(Array.prototype, 'myOwnBind', {
 
 });
 
-Object.defineProperty(Array.prototype, 'myOwnCall', {
+Object.defineProperty(Object.prototype, 'myOwnCall', {
     value: function (objContext, ...restArgs) {
-       let uniqueProperty = Date.now().toString();
+       let uniqueProperty = Symbol();
        objContext[uniqueProperty] = this;
        let result = objContext[uniqueProperty](...restArgs);
        delete objContext[uniqueProperty];
