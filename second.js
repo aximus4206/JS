@@ -75,7 +75,7 @@ Object.defineProperty(Array.prototype, 'myOwnForEach', {
  
        if (index < this.length) {
             funClbck(this[index], this);
-            this.itsMyForEach(funClbck, ++index);
+            this.myOwnForEach(funClbck, ++index);
        };
     }
 
