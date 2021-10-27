@@ -192,31 +192,31 @@ myFirstTree.insertValue(13);
 let arr = [8, 6, 3, 11, 4, 9, 2, 1, 7, 5];
 
 Array.prototype.bubbleSort = function bubbleSort(callbackF){
-    for(let i = 0; i < arr.length-1; i++){
-        for(let j = 0; j < arr.length-1-i; j++){
-            if(callbackF(arr[j+1], arr[j])){
-                let timed = arr[j+1];
-                arr[j+1] = arr[j];
-                arr[j] = timed;
+    for(let i = 0; i < this.length-1; i++){
+        for(let j = 0; j < this.length-1-i; j++){
+            if(callbackF(this[j+1], this[j])){
+                let timed = this[j+1];
+                this[j+1] = this[j];
+                this[j] = timed;
             }
         }
     }
-    return arr;
+    return this;
 }
 arr.bubbleSort((a,b)=>a<b);
 
 Array.prototype.chosenSort = function(callbackF){
-    for(let i = 0; i < arr.length-1; i++){
+    for(let i = 0; i < this.length-1; i++){
         let min = i;
-        for(let j = i+1; j < arr.length; j++){
-            if(callbackF(arr[j], arr[min])){
+        for(let j = i+1; j < this.length; j++){
+            if(callbackF(this[j], this[min])){
                 min = j;
             }
         }
-        let timed = arr[min];
-        arr[min] = arr[i];
-        arr[i] = timed;
+        let timed = this[min];
+        this[min] = this[i];
+        this[i] = timed;
     }
-    return arr;
+    return this;
 }
 arr.chosenSort((a,b)=>a<b);
