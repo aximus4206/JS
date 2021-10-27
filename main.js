@@ -158,45 +158,48 @@
 //     return arrNew;
 // }
 
-// const memoizeFib = memoize(function reqoursionFib(number, firstNum, secondNum, arr) {
+// function reqoursionFib(number, firstNum, secondNum, arr) {
 //     debugger
 //     firstNum = firstNum || 0;
 //     secondNum = secondNum || 1;
 //     arr = [firstNum, secondNum] || [0, 1];
-//     // result = result || [];
 //     if(number > 0){
 //         firstNum = firstNum + secondNum;
 //         arr.push(firstNum);
 //         secondNum = secondNum + firstNum;
 //         arr.push(secondNum);
-//         return memoizeFib(--number, firstNum, secondNum, arr);
+//         return reqoursionFib(--number, firstNum, secondNum, arr);
 //     }
 //     return arr;
-// }, 'n numbers fibanachi');
-// console.log(memoizeFib(6));
-// console.log(memoizeFib(7));
-// console.log(memoizeFib(5));
+// }
 
-const memo = {0:0}
-const fibonacci = function (number) {
-
-    if (number < 3) {
-        memo[number] = number;
-        return number;
-    } else if (memo[number]) {
-        console.log('Fetching from cache '+ number );
-        return memo[number];
-    } else {
-        let result = fibonacci(number - 1) + fibonacci(number - 2);
-        console.log('Calculating result '+ number );
-        memo[number] = result;
-        console.log(memo)
-        return result;
+let memo = {};
+function reqFibonacci(number) {
+    number = number || 0;
+    let fibArr = [0, 1];
+    if(number < 1) {
+        return [];
+    }else if(number == 1){
+        return [0];
+    }else if(number == 2){
+        return fibArr;
     }
+    fibArr = memo[number] || fibArr;
+    if(memo[number] === undefined){
+        if(number >= 3){
+            fibArr = reqFibonacci(--number);
+            console.log(fibArr);
+            fibArr.push(fibArr[fibArr.length - 2] + fibArr[fibArr.length - 1]);
+            memo[++number] = fibArr.concat();
+        }
+    }else{
+        console.log("fetching from cache");
+        return memo[number];
+    }
+    // console.log("calculated result");
+    return fibArr;
+}
 
-};
-console.log(fibonacci(9))
-console.log(fibonacci(10))
 
 
 // let str = 'this string has no repeats no repeats and is unique string';
@@ -261,15 +264,16 @@ console.log(fibonacci(10))
 //     return 1;
 // }, 'memoized factorial');
 
-// function reqoursionFactorial(num){
-//     memo = memo || {};
-
-//     if(num != 1){
-//         return num * reqoursionFactorial(num-1);
-//     }
-//     return 1;
-// };
-
+let memo = {};
+function memoizedFactorial(number){
+    if (number === 0) {
+        return 1;
+    } else if (memo[number]) {
+        console.log("from cache");
+        return memo[number];
+    }
+    return memo[number] = number * memoizedFactorial(number-1);
+}
 
 // // let width = 2;
 // // let height = 4;
