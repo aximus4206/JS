@@ -1,25 +1,20 @@
 
 const checkPhone = function (tel){
-    let phoneRegExp = /^\+\d{2}\(\d{3}\)\d{3}(\-\d{2}){2}$/;
-    return phoneRegExp.test(tel);
+    return /^\+\d{2}\(\d{3}\)\d{3}(\-\d{2}){2}$/.test(tel);
 }
 
 const checkEmail = function (email){
-    let emailRegExp = /^([\w-]+[\d+]?)+@([\w-]+)\.([\w]+)\.(\w{3})$/;
-    return emailRegExp.test(email);
+    return /^([\w-]+[\d+]?)+@([\w-]+)\.([\w]+)\.(\w{3})$/.test(email);
 }
 
 const checkWebsite = function (site){
-    let siteRegExp = /^(https?)\:\/\/([\w-]+)\.([\w]{3})$/;
-    return siteRegExp.test(site);
+    return /^(https?)\:\/\/([\w-]+)\.([\w]{3})$/.test(site);
 }
 
 const checkPassword = function (password){
-    let passwordRegExp = /^[a-zA-Z0-9_]{6,25}$/;
-    return passwordRegExp.test(password);
+    return /^[a-zA-Z0-9_]{6,25}$/.test(password);
 }
 
 const checkIpv4 = function (ipv4){
-    let ipv4RegExp = /^(\d{1,3}\.?){4}$/;
-    return ipv4RegExp.test(ipv4);
+    return /^(\d{1,3}\.?){4}$/.test(ipv4);
 }
