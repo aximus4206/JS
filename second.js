@@ -60,12 +60,12 @@ Object.defineProperty(Object.prototype, 'myOwnCall', {
 
 
 Object.defineProperty(Array.prototype, 'myOwnPush', {
-    value: function (...args) {
-       for (let i = 0; i < args.length; i++) {
-          this[this.length] = args[i];
-        }
-        return this;
-    }
+   value: function (...args) {
+      for (let i = 0; i < args.length; i++) {
+         this[this.length] = args[i];
+      }
+      return this;
+   }
 });
 
 

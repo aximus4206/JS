@@ -5,13 +5,8 @@ class Node{
         this.value = value;
         this.left = null;
         this.right = null;
-    }
-}
-class BinaryChristmasTree{
-    constructor(){
         this.root = null;
     }
-
 
     insertValue(value){
         let newNode = new Node(value);
@@ -61,7 +56,6 @@ class BinaryChristmasTree{
               
     }
 
-
     remove(value){
     this.root = this.removeNode(this.root, value);
     }
@@ -96,7 +90,6 @@ class BinaryChristmasTree{
         }
     }
 
-
     preorder(node, callbackF){
         if(node !== null){
             callbackF(node.value);
@@ -105,7 +98,6 @@ class BinaryChristmasTree{
 
             this.preorder(node.right, callbackF);
         }
-        
     }
 
     inorder(node, callbackF){
@@ -116,7 +108,6 @@ class BinaryChristmasTree{
 
             this.inorder(node.right, callbackF);
         }
-
     }
 
     postorder(node, callbackF) {
@@ -127,7 +118,6 @@ class BinaryChristmasTree{
 
             callbackF(node.value);
         }
-
     }
 
 
@@ -143,7 +133,6 @@ class BinaryChristmasTree{
         return this.postorder(this.root, callbackF);
 
     }
-
 
     traverseBFS(callbackF){
         let queue = [this.root];
@@ -161,12 +150,9 @@ class BinaryChristmasTree{
             }
         }
     }
-
-
-
 }
 
-const myFirstTree = new BinaryChristmasTree();
+const myFirstTree = new Node();
 
 myFirstTree.insertValue(8);
 myFirstTree.insertValue(7);
