@@ -173,32 +173,36 @@
 //     return arr;
 // }
 
-let memo = {};
-function reqFibonacci(number) {
-    number = number || 0;
-    let fibArr = [0, 1];
-    if(number < 1) {
-        return [];
-    }else if(number == 1){
-        return [0];
-    }else if(number == 2){
+function memoFibonacci(){
+    let memo = {};
+    const reqFib = function reqFibonacci(number){
+        number = number || 0;
+        let fibArr = [0, 1];
+        if(number < 1) {
+            return [];
+        }else if(number == 1){
+            return [0];
+        }else if(number == 2){
+            return fibArr;
+        }
+        fibArr = memo[number] || fibArr;
+        if(memo[number] === undefined){
+            if(number >= 3){
+                fibArr = reqFibonacci(--number);
+                console.log(fibArr);
+                fibArr.push(fibArr[fibArr.length - 2] + fibArr[fibArr.length - 1]);
+                memo[++number] = fibArr.concat();
+            }
+        }else{
+            console.log("fetching from cache");
+            return memo[number];
+        }
+        // console.log("calculated result");
         return fibArr;
     }
-    fibArr = memo[number] || fibArr;
-    if(memo[number] === undefined){
-        if(number >= 3){
-            fibArr = reqFibonacci(--number);
-            console.log(fibArr);
-            fibArr.push(fibArr[fibArr.length - 2] + fibArr[fibArr.length - 1]);
-            memo[++number] = fibArr.concat();
-        }
-    }else{
-        console.log("fetching from cache");
-        return memo[number];
-    }
-    // console.log("calculated result");
-    return fibArr;
+    return reqFib;
 }
+
 
 
 
@@ -264,15 +268,18 @@ function reqFibonacci(number) {
 //     return 1;
 // }, 'memoized factorial');
 
-let memo = {};
-function memoizedFactorial(number){
-    if (number === 0) {
-        return 1;
-    } else if (memo[number]) {
-        console.log("from cache");
-        return memo[number];
+function memoFactorial(){
+        let memo = {};
+    const memoFac = function memoizedFactorial(number){
+        if (number === 0) {
+            return 1;
+        } else if (memo[number]) {
+            console.log("from cache");
+            return memo[number];
+        }
+        return memo[number] = number * memoizedFactorial(number-1);
     }
-    return memo[number] = number * memoizedFactorial(number-1);
+    return memoFac;
 }
 
 // // let width = 2;
