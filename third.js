@@ -191,13 +191,13 @@ myFirstTree.insertValue(13);
 
 let arr = [8, 6, 3, 11, 4, 9, 2, 1, 7, 5];
 
-Array.prototype.bubbleSort = function bubbleSort(callbackF){
+Array.prototype.bubbleSort = function bubbleSort(callback){
     for(let i = 0; i < this.length-1; i++){
         for(let j = 0; j < this.length-1-i; j++){
-            if(callbackF(this[j+1], this[j])){
-                let timed = this[j+1];
+            if(callback(this[j+1], this[j])){
+                let temp = this[j+1];
                 this[j+1] = this[j];
-                this[j] = timed;
+                this[j] = temp;
             }
         }
     }
@@ -205,17 +205,17 @@ Array.prototype.bubbleSort = function bubbleSort(callbackF){
 }
 arr.bubbleSort((a,b)=>a<b);
 
-Array.prototype.chosenSort = function(callbackF){
+Array.prototype.chosenSort = function(callback){
     for(let i = 0; i < this.length-1; i++){
         let min = i;
         for(let j = i+1; j < this.length; j++){
-            if(callbackF(this[j], this[min])){
+            if(callback(this[j], this[min])){
                 min = j;
             }
         }
-        let timed = this[min];
+        let temp = this[min];
         this[min] = this[i];
-        this[i] = timed;
+        this[i] = temp;
     }
     return this;
 }
