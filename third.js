@@ -203,7 +203,7 @@ Array.prototype.bubbleSort = function bubbleSort(callback){
     }
     return this;
 }
-arr.bubbleSort((a,b)=>a<b);
+arr.bubbleSort((a, b) => a < b);
 
 Array.prototype.chosenSort = function(callback){
     for(let i = 0; i < this.length-1; i++){
@@ -219,4 +219,4 @@ Array.prototype.chosenSort = function(callback){
     }
     return this;
 }
-arr.chosenSort((a,b)=>a<b);
+arr.chosenSort((a, b) => a < b);
